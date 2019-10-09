@@ -7,41 +7,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const form = document.querySelector('#create-task-form')
 
-// const butt = document.createElement('select')
-// butt.id = 'priority'
-// butt.label = 'Priority'
-// let options = ['high', 'medium', 'low']
-// for (let i = 0; i < options.length; i++){
-//   let option = document.createElement('option')
-//   option.value = options[i]
-//   option.innerText = options[i]
-//   butt.appendChild(option)
-// }
-
-// form.appendChild(butt)
-
-// 1. create button
-
-
-// 2. slap it on the dom
-
-// 1. select input 
 const priority = document.querySelector('#priority')
+const taskList = document.querySelector("#tasks");
+
+const sort_array = []
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
   // debugger;
   const inputField = document.querySelector("#new-task-description");
   let input = inputField.value;
-  const taskList = document.querySelector("#tasks");
   let listItem = document.createElement("li");
   listItem.innerText = input;
   listItem.style.color = priority.value
-  taskList.appendChild(listItem);
+  if (priority.value === 'green'){
+    listItem.id='1'
+  } else if (priority.value === 'goldenrod'){
+    listItem.id='2'
+  } else {
+    listItem.id='3'
+  }
+  sort_array.push(listItem)
+  if (listItem.innerText != ''){
+  taskList.appendChild(listItem);}
   let button = document.createElement('button')
   button.id = 'clear'
-  button.value = 'x'
-  button.type = 'button'
+
+  // button.type = 'button'
   button.innerText = 'x'
   listItem.appendChild(button);
   form.reset();
@@ -50,10 +42,9 @@ form.addEventListener("submit", function(e) {
   })
 })
 
+const butt = document.querySelector('#sort-by-priority')
+const sorted_array = sort_array.sort((a,b) => a.id - b.id)
+//1. so
+butt.addEventListener('click', function(){
 
-
-
-  
-
-
-
+})
