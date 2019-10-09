@@ -6,7 +6,7 @@ const priority = document.querySelector('#priority')
 // * grabbing the list of tasks from html
 const taskList = document.querySelector("#tasks");
 // * array initialized to hold list elements to later be sorted 
-const sort_array = []
+const sortArray = []
 
 // * event listener for submission of form
   form.addEventListener("submit", function(e) {
@@ -31,8 +31,8 @@ const sort_array = []
       }
       // * only allow the list item to be appended onto the list if it includes text
       if (listItem.innerText != ''){
-      taskList.appendChild(listItem);
-      sort_array.push(listItem);}
+      sortArray.push(listItem);
+      taskList.appendChild(listItem);}
       // * creating a button element that will be used to delete list element
     let button = document.createElement('button')
       // * giving the button element an id so that we can access it
@@ -52,10 +52,17 @@ const sort_array = []
 
 // * grabbing our button to sort our to-do list  
 const butt = document.querySelector('#sort-by-priority')
-// * creating a new variable that will hold our array of list elements after it has been sorted
-const sorted_array = sort_array.sort((a,b) => a.id - b.id)
 // * event listener waiting for click of sort button  
 butt.addEventListener('click', function(){
+  // * grabbing all of our list elents from DOM
+  let listNodes = document.querySelectorAll('li')
+  // * removing all elements before replacing them in order
+  listNodes.forEach(function(element){element.remove()})
+  // * creating a new variable that will hold our array of list elements after it has been sorted
+  let sortedArray = sortArray.sort((a,b) => b.id - a.id)
+  // * slap the sorted list on the dom
+  sortedArray.forEach(function(element){taskList.appendChild(element)})
+  // debugger;
 })
 
 
