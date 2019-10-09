@@ -4,6 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const form = document.querySelector('#create-task-form')
+// 1. create button
+
+const button = document.createElement('button')
+button.id = 'clear'
+button.value = 'x'
+button.type = 'button'
+button.innerText = 'x'
+
+// 2. slap it on the dom
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -13,10 +22,17 @@ form.addEventListener("submit", function(e) {
   let listItem = document.createElement("li");
   listItem.innerText = input;
   taskList.appendChild(listItem);
+  listItem.appendChild(button);
   form.reset();
 })
 
+button.addEventListener('click', function(e){
+    button.parentElement.remove()
+})
 
+
+
+  
 
 
 
