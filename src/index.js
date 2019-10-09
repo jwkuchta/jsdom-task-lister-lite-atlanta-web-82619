@@ -22,11 +22,6 @@ const form = document.querySelector('#create-task-form')
 
 // 1. create button
 
-const button = document.createElement('button')
-button.id = 'clear'
-button.value = 'x'
-button.type = 'button'
-button.innerText = 'x'
 
 // 2. slap it on the dom
 
@@ -35,21 +30,26 @@ const priority = document.querySelector('#priority')
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
-  debugger;
+  // debugger;
   const inputField = document.querySelector("#new-task-description");
   let input = inputField.value;
   const taskList = document.querySelector("#tasks");
   let listItem = document.createElement("li");
   listItem.innerText = input;
-  listItem.textColor = priority.value
+  listItem.style.color = priority.value
   taskList.appendChild(listItem);
+  let button = document.createElement('button')
+  button.id = 'clear'
+  button.value = 'x'
+  button.type = 'button'
+  button.innerText = 'x'
   listItem.appendChild(button);
   form.reset();
+  button.addEventListener('click', function(e){
+      button.parentElement.remove()
+  })
 })
 
-button.addEventListener('click', function(e){
-    button.parentElement.remove()
-})
 
 
 
